@@ -1,0 +1,27 @@
+{
+  "name": "kimgram-backend",
+  "version": "1.0.0",
+  "description": "Instragram clone with Express + Prisma + React and React Native",
+  "repository": "https://github.com/wlehwjdgh/kimgram-backend",
+  "author": "wlehwjdgh <wlehwjdgh@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-node": "^0.0.1-security",
+    "dotenv": "^8.2.0",
+    "graphql-tools": "^4.0.7",
+    "graphql-yoga": "^1.18.3",
+    "merge-graphql-schemas": "^1.7.6",
+    "morgan": "^1.9.1",
+    "prisma": "^1.34.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "deploy": "prisma deploy",
+    "dev": "nodemon --exec babel-node src/server.js"
+  }
+}

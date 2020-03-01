@@ -10,7 +10,7 @@ export default {
                 //JWT
                 return generateToken(user.id);
             }else{
-                throw Error("Wrong email/secret convitation");
+                throw Error("Wrong email/secret conbitation");
             }
         }
     }

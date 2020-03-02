@@ -7,28 +7,31 @@ export default {
 			isAuthenticated(request);
 			const  {postId } = args;
 			const { user } = request;
+			const filterOptions={
+				AND:[
+					{
+						user: {
+							id: user.id
+						}
+					},
+					{
+						post: {
+							id: postId
+						}
+					}
+				]
+			}
+
 			try {
 				/*
 				prisma db에 like라는 query가 있다.
 				like query의 멤버중에 user와 post가 있는데
 				인자로 받은 user와 postId로 기존 like query가 존재하는지 검사하는 루틴.
 				*/
-				const existingLike = await prisma.$exists.like({
-					AND:[
-						{
-							user: {
-								id: user.id
-							}
-						},
-						{
-							post: {
-								id: postId
-							}
-						}
-					]
-				});
+				const existingLike = await prisma.$exists.like(filterOptions);
 				if(existingLike){
 					// TODO
+					await prisma.deleteManyLikes(filterOptions);
 				}else{
 					/*
 					기존에 like가 없었다면 새로운 like를 생성하는 작업.

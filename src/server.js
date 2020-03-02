@@ -18,7 +18,7 @@ const server = new GraphQLServer({
 
 server.express.use(logger("dev"));
 /*
-서버에 전달되는 모든 요청은 passport.js/authenticateJwt()함수를 통과함.
+서버에 전달되는 모든 요청은 passport.js/authenticateJwt()함수를 통과하게 됨
 
 이 함수 안에서는 passport.authenticate("jwt")함수를 실행한다.
 이 함수는 우리가 미리 정의한 strategy(passport.js 마지막에서 두번째 라인)를 이용해서 

@@ -5,6 +5,7 @@ import passport from "passport";
 import schema from "./schemas";
 import "./passport";    // server.js에서는 passport.js파일에서 무언가를 받아서 사용할 필요가 없기때문에 이렇게 import한다.
 import { authenticateJwt } from "./passport";
+import { isAuthenticated } from "./middlewares";
 
 //.env파일에서 포트를 읽어온다. 만약 없다면 default 4000
 const PORT = process.env.PORT || 4000
@@ -13,7 +14,7 @@ const PORT = process.env.PORT || 4000
 //context에는 함수 변수 모두 담을 수 있다.
 const server = new GraphQLServer({
 	schema, 
-	context: ({request}) => ({request}) 
+	context: ({request}) => ({request, isAuthenticated }) 
 });
 
 server.express.use(logger("dev"));

@@ -4,6 +4,8 @@ type User {
   email: String!
   firstName: String
   lastName: String
+  fullName: String #computed field firstName과 lastName에 의해 정해짐 
+  amIFollowing: Boolean! #computed field
   bio: String
   following: [User!]!
   followers: [User!]!
@@ -22,6 +24,7 @@ type Post {
   files: [File!]!
   likes: [Like!]!
   comments: [Comment!]!
+  isLiked: Boolean! #computed field
 }
 
 type Like {

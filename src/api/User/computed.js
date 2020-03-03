@@ -12,36 +12,37 @@ export default {
   User: {
 		fullName: parent => {
 			return `${parent.firstName} ${parent.lastName}`;
-        },
-        amIFollowing: async (parent, _, { request }) => {
-            const { user } = request;
-            // parent에서 id를 빼내어 parentId변수에 넣는 문법
-            const { id:parentId } = parent;
+    },
+    isFollowing: (parent, _, { request }) => {
+      const { user } = request;
+      // parent에서 id를 빼내어 parentId변수에 넣는 문법
+      const { id:parentId } = parent;
 
-            /*
-            지금 보고있는 프로필의 유저가 나를 팔로우하는지 확인하는 코드
-            id가 존재하고 && 유저의 팔로우들중 요청한 user(나)의 아이디가 있는지
-            */
-            try{
-              //const exsists= await prisma.$exists.user({ 왜 에러가 날까..?
-
-              const exsists = await prisma.$exists.user({
-                AND: [{ id: parentId },{ followers_some: [user.id ]}]
-              });
-              console.log("exists: ", exsists);
-              if(exsists) return true;
-              else return false;
-            }catch(error){
-              console.log(error);
-              return false;
+      /*
+      지금 보고있는 프로필의 유저가 나를 팔로우하는지 확인하는 코드
+      */
+      try{
+        return  prisma.$exists.user({
+          AND: [
+            { 
+              id: user.id
+            },
+            { 
+              following_some: { 
+                id: parentId
+              }
             }
-        },
-        itsMe:(parent, _, { request }) =>{
-          const { user } = request;
-          const {id: parentId } = parent;
-
-          return user.id === parentId;
-        }
+          ]
+        });
+      }catch(error){
+        return false;
+      }
+    },
+    isSelf:(parent, _, { request }) =>{
+      const { user } = request;
+      const {id: parentId } = parent;
+      return user.id === parentId;
+    }
   }
 
 }

@@ -5,8 +5,8 @@ type User {
   firstName: String
   lastName: String
   fullName: String #computed field
-  amIFollowing: Boolean! #computed field
-  itsMe: Boolean! #computed field
+  isFollowing: Boolean! #computed field
+  isSelf: Boolean! #computed field
   bio: String
   following: [User!]!
   followers: [User!]!

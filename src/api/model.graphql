@@ -4,8 +4,9 @@ type User {
   email: String!
   firstName: String
   lastName: String
-  fullName: String #computed field firstName과 lastName에 의해 정해짐 
+  fullName: String #computed field
   amIFollowing: Boolean! #computed field
+  itsMe: Boolean! #computed field
   bio: String
   following: [User!]!
   followers: [User!]!

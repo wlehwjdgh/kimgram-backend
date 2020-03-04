@@ -32,3 +32,10 @@ export const FULL_POST_FRAGMENT = `
 		}
 	}
 `;
+
+export const ROOM_FRAGMENT = `
+	fragment RoomParts on Room {
+		id
+		participants {id}
+	}
+`;

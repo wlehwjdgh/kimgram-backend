@@ -30,6 +30,7 @@ type Post {
   comments: [Comment!]!
   isLiked: Boolean! #computed field
   likeCount: Int! #computed field
+  commentCount: Int! #computed field
   createdAt: String
   updatedAt: String
 }
